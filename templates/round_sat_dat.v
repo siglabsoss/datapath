@@ -1,5 +1,5 @@
 <%
-    const range = require('lodash.range');
+    const range = require('lodash').range;
     const layers = 5;
 %>
 module round_sat_dat_${local.join('_')} #(

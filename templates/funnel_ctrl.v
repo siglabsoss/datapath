@@ -1,5 +1,5 @@
 <%
-    const range = require('lodash.range');
+    const range = require('lodash').range;
 
     const dim = (n) => `[${n - 1}:0]`;
 

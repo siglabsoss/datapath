@@ -1,5 +1,5 @@
 <%
-    const range = require('lodash.range');
+    const range = require('lodash').range;
 
     const dim = (n) => `[${n - 1}:0]`;
 
@@ -39,7 +39,7 @@ module defunnel_ctrl_${local.join('_')} (
     output       i_${index}_req,
     input        i_${index}_ack,
 <% }) %>
-    output       ${ dim(8) } enable,
+    output       ${ dim(chunks) } enable,
     input        ${ dim(8) } mode,
     input clk, reset_n
 );

@@ -1,5 +1,5 @@
 <%
-    const range = require('lodash.range');
+    const range = require('lodash').range;
 
     const dim = (n) => `[${n - 1}:0]`;
 
@@ -11,7 +11,7 @@
     };
 
 
-    const radix = 4;
+    const radix = 1;
     const chunkW = radix * 2 * 16;
 
     const targets = obj.local[0];

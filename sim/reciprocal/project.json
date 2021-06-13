@@ -1,0 +1,24 @@
+{
+    "top": "reciprocal",
+    "topFile": "reciprocal.v",
+    "clk": "clk",
+    "reset_n": "reset_n",
+    "targets": [
+        {
+            "data": "t_0_dat",
+            "valid": "t_0_req",
+            "ready": "t_0_ack",
+            "width": 15,
+            "length": 16000
+        }
+    ],
+    "initiators": [
+        {
+            "data": "i_13_dat",
+            "valid": "i_13_req",
+            "ready": "i_13_ack",
+            "width": 16,
+            "length": 16000
+        }
+    ]
+}
