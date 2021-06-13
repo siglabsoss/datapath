@@ -7,6 +7,18 @@ K9 Funnel (CFG: 2:1)
 ### Stage 2
 16x complex multiplications K8[i] C* k9[i]    (Re:18,Im:18) C* (Re:18,Im:18) => (Re:36,Im:36)
 
+![stage2](stage2.svg)
+
+![cmul](cmul.svg)
+
+![conj](conj.svg)
+
+![magsq](magsq.svg)
+
+![add](add.svg)
+
+![reciprocal](reciprocal.svg)
+
 ### Stage 3
 Bypass
 16x(Re:36,Im:36) => 16x(Re:36,Im:36)
