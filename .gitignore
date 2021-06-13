@@ -1,0 +1,10 @@
+node_modules
+build
+obj_dir
+syn
+hdl
+*.vcd
+templates.js
+package-lock.json
+golden
+backup_temp
