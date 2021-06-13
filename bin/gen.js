@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 'use strict';
 
-const templates = require('../templates.js');
 const path = require('path');
 const fs = require('fs-extra');
+
+const templates = require('../templates.js');
+const bs_dat = require('../lib/bs_dat.js');
 
 const log2slices = 4;
 const slices = 1 << log2slices;
 const log2sections = 1;
 const sections = 1 << log2sections;
+
+const generators = Object.assign(templates, {
+    'bs_dat.v': bs_dat
+});
 
 const props = {
     dataWidth: 32,
@@ -48,20 +54,21 @@ const fineGrain = {
     //     ['05', 1.30657959],
     //     ['06', 0.923828125]
     // ],
+    'round_sat_dat.v': [[1, 1]],
     'bs_dat.v': [[2, 1]],
 
-    'funnel_dat.v':    [[2, 2], [2, 4]],
-    'funnel_ctrl.v':   [[2, 2], [2, 4]],
+    'funnel_dat.v':    [[2, 4], [2, 8], [2, 16]],
+    'funnel_ctrl.v':   [[2, 4], [2, 8], [2, 16]],
 
-    'defunnel_dat.v':  [[3, 1], [5, 1]],
-    'defunnel_ctrl.v': [[3, 1], [5, 1]]
+    'defunnel_dat.v':  [[5, 1], [9, 1], [17, 1]],
+    'defunnel_ctrl.v': [[5, 1], [9, 1], [17, 1]]
 };
 
-Object.keys(templates).forEach(fileName => {
+Object.keys(generators).forEach(fileName => {
     const extName = path.extname(fileName);
     const baseName = path.basename(fileName, extName);
     (fineGrain[fileName] || [[]]).forEach(subUnit => {
-        const body = templates[fileName](Object.assign({local: subUnit}, props));
+        const body = generators[fileName](Object.assign({local: subUnit}, props));
         const outPath = path.resolve(process.cwd(), 'hdl', baseName + subUnit.map(e => '_' + e).join('') + extName);
         fs.outputFile(
             outPath,

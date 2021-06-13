@@ -9,8 +9,9 @@ const reqack = require('reqack');
 
 const g = reqack.circuit('datapath');
 
-const nSlices = 16;
+const radix = 4;
 const nSections = 2;
+const nSlices = radix * nSections * 2; // -> 16;
 
 const rkw = {width: nSlices * 32, capacity: 1};
 
@@ -23,7 +24,8 @@ const dpTargets = {
 
 const dpInitiators = datapath(g, {
     nSlices: nSlices,
-    nSections: nSections
+    nSections: nSections,
+    hasReciprocal: false
 })(dpTargets);
 
 dpInitiators.k1(g('k1'), 'k1');
@@ -44,8 +46,9 @@ g.nodes.map((n, ni) => {
     }
 });
 
-fs.outputFile('hdl/datapath.dot', reqack.dot(g), () => {
-    fs.outputFile('hdl/datapath.v', reqack.verilog(g, macros), () => {
-        fs.outputFile('hdl/project.js', reqack.manifest(g, 'datapath'), () => {});
-    });
-});
+fs.outputFile('hdl/datapath.dot', reqack.dot(g));
+fs.outputFile('hdl/datapath.v', reqack.verilog(g, macros));
+fs.outputFile('hdl/project.js', reqack.manifest(g, 'datapath'));
+fs.outputFile('hdl/datapath.svg', reqack.svg(g, {topDown: true}));
+
+/* eslint no-console:0 */

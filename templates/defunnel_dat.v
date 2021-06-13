@@ -1,5 +1,5 @@
 <%
-    const range = require('lodash.range');
+    const range = require('lodash').range;
 
     const dim = (n) => `[${n - 1}:0]`;
 
@@ -11,7 +11,7 @@
     };
 
 
-    const radix = 4;
+    const radix = 1;
     const perChunk = 2 * radix;
     const chunkW = perChunk * 16;
 
@@ -34,7 +34,7 @@ module defunnel_dat_${local.join('_')} (
     input        ${ dim(narrowWidth) } t_${index}_dat,<% }) %>
     input        ${ dim(8) } t_cfg_dat, // config
     output       ${ dim(wideWidth) } i_0_dat,
-    input        ${ dim(8) } enable,
+    input        ${ dim(chunks) } enable,
     output       ${ dim(8) } mode,
     input clk, reset_n
 );

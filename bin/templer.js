@@ -44,7 +44,7 @@ if ((argv.source !== undefined) && (argv.output !== undefined)) {
                     }
 
                     if (fileCount === 0) {
-                        res += '\nmodule.exports = {\n'
+                        res += '\nmodule.exports = {\n';
                         files.reduce(function (out, e, i) {
                             res += '    \'' + e + '\' : __f' + i + ',\n';
                             return res;
@@ -67,3 +67,4 @@ if ((argv.source !== undefined) && (argv.output !== undefined)) {
         });
     });
 }
+/* eslint no-console:0 */
